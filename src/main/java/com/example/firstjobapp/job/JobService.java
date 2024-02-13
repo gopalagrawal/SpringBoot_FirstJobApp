@@ -1,4 +1,6 @@
 package com.example.firstjobapp.job;
+import org.springframework.http.ResponseEntity;
+
 import java.util.List;
 
 // Note the use of "interface" rather than class for loose coupling w/ controller.
@@ -6,5 +8,7 @@ import java.util.List;
 public interface JobService {
     abstract List<Job> findAll();
     abstract String createJob(Job job);
+
+    abstract Job getJobById(Long id);
     abstract String deleteJob();
 }
