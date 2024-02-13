@@ -1,9 +1,10 @@
 package com.example.firstjobapp.job;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 
 @RestController
@@ -31,16 +32,22 @@ public class JobController {
 
     // Send POST with a body json as { "id": ... "title": ... "description": .... }
     @PostMapping("/jobs")
-    public String createJob(@RequestBody Job job) {
-        return jobService.createJob(job);
+    public ResponseEntity<String> createJob(@RequestBody Job job) {
+        String resp = jobService.createJob(job);
+        if (resp != null)
+            return new ResponseEntity<>(resp, HttpStatus.OK);
+        else
+            return new ResponseEntity<>("Failed Creating Job", HttpStatus.BAD_REQUEST);
+
     }
 
     @GetMapping("/jobs/{id}")
-    public Job getJobById(@PathVariable Long id){
+    public ResponseEntity<Job> getJobById(@PathVariable Long id){
         Job job = jobService.getJobById(id);
-        if (job != null) // Job was found
-            return job;
-        else // Return error status in a dummy Job
-            return new Job((long) 404, "Status", "Job Not Found", (long) 0, (long) 0, "");
+        if (job != null)
+            return ResponseEntity.ok(job); // alt. to new ResponseEntity<>(job, HttpStatus.OK)
+        else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
     }
 }

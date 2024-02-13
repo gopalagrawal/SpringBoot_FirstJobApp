@@ -1,6 +1,8 @@
 package com.example.firstjobapp.job.impl;
 import com.example.firstjobapp.job.Job;
 import com.example.firstjobapp.job.JobService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ public class JobServiceImpl implements JobService {
     public String createJob(Job job) {
         job.setId(nextId++);
         jobs.add(job);
-        return "Job Added Successfully";
+        return "Job Added Successfully"; // or return null
     }
 
     @Override

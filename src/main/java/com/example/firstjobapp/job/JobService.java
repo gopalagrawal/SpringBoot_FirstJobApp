@@ -1,4 +1,6 @@
 package com.example.firstjobapp.job;
+import org.springframework.http.ResponseEntity;
+
 import java.util.List;
 
 // Note the use of "interface" rather than class for loose coupling w/ controller.
