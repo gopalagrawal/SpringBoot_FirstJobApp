@@ -23,7 +23,7 @@ public class Job {
 
     // ---------- Getters / Setters ----------------
     public Long getId() {
-        return id;
+        return (long) id;
     }
 
     public void setId(Long id) {

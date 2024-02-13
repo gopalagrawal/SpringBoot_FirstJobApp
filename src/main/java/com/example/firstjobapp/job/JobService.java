@@ -6,5 +6,7 @@ import java.util.List;
 public interface JobService {
     abstract List<Job> findAll();
     abstract String createJob(Job job);
+
+    abstract Job getJobById(Long id);
     abstract String deleteJob();
 }
