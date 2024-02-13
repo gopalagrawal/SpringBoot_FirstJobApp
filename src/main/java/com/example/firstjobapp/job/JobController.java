@@ -18,9 +18,12 @@ public class JobController {
         // At runtime, SB will inject an impl of 'JobService' interface  here.
         this.jobService = jobService;
 
-        // Init one job in our db
-        Job job = new Job( (long)10, "Best Job", "Just relax", (long) 1000, (long) 2000, "Timbuktu" );
-        this.jobService.createJob(job);
+        // Init a couple of dummy jobs in our db
+        Job job1 = new Job( null, "Best Job", "Just relax", (long) 1000, (long) 2000, "Hawaii" );
+        Job job2 = new Job( null, "Worst Job", "Work Hard", (long) 0, (long) 20, "Timbuktu" );
+        this.jobService.createJob(job1);
+        this.jobService.createJob(job2);
+
     }
 
     @GetMapping("/jobs")

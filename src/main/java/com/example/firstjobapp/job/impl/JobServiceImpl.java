@@ -11,6 +11,7 @@ import java.util.List;
 public class JobServiceImpl implements JobService {
 
     private List<Job> jobs = new ArrayList<Job>();  // Simulate a DB of Jobs
+    private Long nextId = 1L;  // Init for auto-generated job id's.
 
     @Override
     public List<Job> findAll() {
@@ -19,6 +20,7 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public String createJob(Job job) {
+        job.setId(nextId++);
         jobs.add(job);
         return "Job Added Successfully";
     }
