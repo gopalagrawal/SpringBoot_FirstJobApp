@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 // Use @Service annotation to identify this as a service implementation
 @Service
@@ -28,8 +29,20 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public String deleteJob() {
-        return null;
+    public boolean deleteJob(Long id) {
+        boolean removed = jobs.removeIf( job -> job.getId().equals(id) );
+        return removed;
+    }
+
+    @Override
+    public boolean updateJob(Long id, Job newJob) {
+        newJob.setId(id);   // override newJob id with id requested in jobs/{id}
+        Job job = this.getJobById(id);
+
+        if (job != null)
+            return job.updateFrom(newJob); // true / false
+        else // no such job with id found.
+            return false;
     }
 
     @Override

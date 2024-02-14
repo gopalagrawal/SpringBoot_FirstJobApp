@@ -10,5 +10,7 @@ public interface JobService {
     abstract String createJob(Job job);
 
     abstract Job getJobById(Long id);
-    abstract String deleteJob();
+    abstract boolean deleteJob(Long id);
+
+    abstract boolean updateJob(Long id, Job job);
 }

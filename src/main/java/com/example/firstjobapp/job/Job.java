@@ -69,4 +69,24 @@ public class Job {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    public boolean updateFrom(Job other){
+        //Assumption: The id of other job should match this one. Else fail.
+        if ( this.id.equals(other.getId()) ) {
+            //update only if other.field not null.
+            if (other.getTitle() != null)
+                this.title = other.getTitle();
+            if (other.getDescription() != null)
+                this.description = other.getDescription();
+            if (other.getMinSalary() != null)
+                this.minSalary = other.getMinSalary();
+            if (other.getMaxSalary() != null)
+                this.maxSalary = other.getMaxSalary();
+            if (other.getLocation() != null)
+                this.location = other.getLocation();
+            return true;
+        }
+        else
+            return false;
+    }
 }
